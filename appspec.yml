@@ -6,11 +6,15 @@ files:
     destination: /home/ubuntu/myapp
 
 hooks:
-  AfterInstall:
+   ApplicationStop:
+    - location: scripts/stop_docker.sh
+      timeout: 180
+      runas: root
+   AfterInstall:
     - location: scripts/install_nginx.sh
       timeout: 180
       runas: root         # changed from ubuntu
-  ApplicationStart:
+   ApplicationStart:
     - location: scripts/start_nginx.sh
       timeout: 180
       runas: root         # changed from ubuntu
